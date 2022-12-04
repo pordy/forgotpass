@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>test2</title>
+</head>
+<body>
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "";
+$dbname = "testdb";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+$sql = "SELECT * FROM user_data";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "<br> id: ". $row["id"]. " - Name: ". $row["name"]. " | Password " . $row["password"] ." | Email " . $row["email"] . "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>
+</div>
+</body>
+</html>
